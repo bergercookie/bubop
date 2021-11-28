@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bubop"
-version = "0.1.0"
+version = "0.1.1"
 description = "Bergercookie's Useful Bits Of Python"
 authors = ["Nikos Koukis <nickkouk@gmail.com>", ]
 license = "MIT"
@@ -16,7 +16,7 @@ classifiers = [ "Programming Language :: Python :: 3.6",
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8.9"
+python = "^3.8"
 loguru = "^0.5.3"
 tqdm = "^4.62.3"
 isort = "^5.10.1"
