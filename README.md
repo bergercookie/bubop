@@ -5,7 +5,8 @@ TODO - WIP
 TODO Add logo
 TODO Register app with codacy
 
-![CI](https://github.com/bergercookie/bubop/actions/workflows/ci/badge.svg)
+<a href="https://github.com/bergercookie/bubop/actions" alt="CI">
+<img src="https://github.com/bergercookie/bubop/actions/workflows/ci.yml/badge.svg" /></a>
 
 <img src="https://api.codacy.com/project/badge/Grade/9ddd71dc61914b32a0963d4101c29fb5"/></a>
 <a href="https://www.codacy.com/app/bergercookie/bubop">

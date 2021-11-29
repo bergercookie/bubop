@@ -8,9 +8,7 @@ readme = "README.md"
 
 homepage = "https://github.com/bergercookie/bubop"
 repository = "https://github.com/bergercookie/bubop"
-classifiers = [ "Programming Language :: Python :: 3.6",
-                "Programming Language :: Python :: 3.7",
-                "Programming Language :: Python :: 3.8",
+classifiers = [ "Programming Language :: Python :: 3.8",
                 "License :: Other/Proprietary License",
                 "Operating System :: Unix",
 ]
@@ -20,6 +18,7 @@ python = "^3.8"
 loguru = "^0.5.3"
 tqdm = "^4.62.3"
 isort = "^5.10.1"
+python-dateutil = "^2.8.2"
 [tool.poetry.dev-dependencies]
 pytest = "*"
 black = { version = "*", allow-prereleases = true }

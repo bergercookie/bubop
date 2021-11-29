@@ -1,3 +1,4 @@
+import re
 from enum import Enum, auto
 from pathlib import Path
 from typing import Callable, Dict, Type
@@ -72,3 +73,25 @@ def valid_path(s: str, filetype=FileType.FILE_OR_DIR) -> Path:
         raise _file_type_to_not_exists_exc[filetype](path)
 
     return path
+
+
+def get_valid_filename(s: str) -> str:
+    """Return a filename-compatible version of the given string s.
+
+    :param s: String to be used as the base of the filename. You may also pass
+              non-string objects that will however be able to convert to strings via the
+              str operator.
+
+    >>> get_valid_filename(r"5678^()^")
+    '5678____'
+    >>> get_valid_filename(r"a|string\\go/es||here")
+    'a_string_go_es__here'
+    >>> get_valid_filename(r"strin***g")
+    'strin___g'
+
+    .. seealso::
+
+        `https://stackoverflow.com/questions/295135/turn-a-string-into-a-valid-filename`_
+    """
+    s = str(s).strip().replace(" ", "_")
+    return re.sub(r"(?u)[^-\w.]", "_", s)
