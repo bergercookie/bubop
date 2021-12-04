@@ -47,7 +47,7 @@ _file_type_to_not_exists_exc: Dict[FileType, Type[BaseException]] = {
 def valid_path(s: str, filetype=FileType.FILE_OR_DIR) -> Path:
     """Return a pathlib.Path from the given string.
 
-    If the input does not correspond to a valid path, then raise a FileNotFoundError exception
+    If the input does not correspond to a valid path, then raise an exception
 
     >>> valid_path("/etc")
     PosixPath...
