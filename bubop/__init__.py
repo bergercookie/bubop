@@ -1,7 +1,12 @@
 from loguru import logger
 
+from bubop.common_dir import CommonDir
 from bubop.crypto import read_gpg_token
-from bubop.exceptions import CustomException, NoSuchFileOrDirectoryError
+from bubop.exceptions import (
+    CustomException,
+    NoSuchFileOrDirectoryError,
+    OperatingSystemNotSupportedError,
+)
 from bubop.fs import FileType, get_valid_filename, valid_path
 from bubop.logging import (
     log_to_syslog,
@@ -11,13 +16,18 @@ from bubop.logging import (
     verbosity_to_logging_lvls,
 )
 from bubop.misc import get_object_unique_name, xor
+from bubop.prefs_manager import PrefsManager
+from bubop.serial import pickle_dump, pickle_load
 from bubop.string import non_empty
 from bubop.time import format_datetime_tz, is_same_datetime, parse_datetime
 
 __all__ = [
+    "CommonDir",
     "CustomException",
     "FileType",
     "NoSuchFileOrDirectoryError",
+    "OperatingSystemNotSupportedError",
+    "PrefsManager",
     "format_datetime_tz",
     "get_object_unique_name",
     "get_valid_filename",
@@ -28,6 +38,8 @@ __all__ = [
     "loguru_tqdm_sink",
     "non_empty",
     "parse_datetime",
+    "pickle_dump",
+    "pickle_load",
     "read_gpg_token",
     "valid_path",
     "verbosity_int_to_str",

@@ -11,7 +11,7 @@ def get_object_unique_name(obj: Any) -> str:
     return f"{type(obj).__name__}_{hex(id(obj))}"
 
 
-def xor(*args):
+def xor(*args) -> bool:
     """True if exactly one of the arguments of the iterable is True.
 
     >>> xor(0,1,0,)
