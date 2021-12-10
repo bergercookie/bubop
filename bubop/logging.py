@@ -23,7 +23,7 @@ def verbosity_int_to_str(verbosity: int) -> LoguruLogLevel:
     if verbosity < 0:
         raise RuntimeError("verbosity must be >= 0")
     elif verbosity > 2:
-        verbotisy = 2
+        verbosity = 2
 
     return _verbosity_int_to_str[verbosity]
 
@@ -85,8 +85,17 @@ def log_to_syslog(name: str, level: LoguruLogLevel = "WARNING"):
 
 # Mapping from verbosity count (e.g. with -vvv from cli) to levels of logging in the standard
 # library logging module.
-verbosity_to_logging_lvls = {
+_verbosity_to_logging_lvl = {
     0: logging.INFO,
     1: logging.DEBUG,
     2: logging.DEBUG,  # there's no trace level
 }
+
+
+def verbosity_int_to_std_logging_lvl(verbosity: int) -> int:
+    if verbosity < 0:
+        raise RuntimeError("verbosity must be >= 0")
+    elif verbosity > 2:
+        verbosity = 2
+
+    return _verbosity_to_logging_lvl[verbosity]

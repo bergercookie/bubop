@@ -12,8 +12,8 @@ from bubop.logging import (
     log_to_syslog,
     loguru_set_verbosity,
     loguru_tqdm_sink,
+    verbosity_int_to_std_logging_lvl,
     verbosity_int_to_str,
-    verbosity_to_logging_lvls,
 )
 from bubop.misc import get_object_unique_name, xor
 from bubop.prefs_manager import PrefsManager
@@ -43,6 +43,6 @@ __all__ = [
     "read_gpg_token",
     "valid_path",
     "verbosity_int_to_str",
-    "verbosity_to_logging_lvls",
+    "verbosity_int_to_std_logging_lvl",
     "xor",
 ]
