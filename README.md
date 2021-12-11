@@ -31,6 +31,15 @@ again in all new python projects of mine.
 
 ## Installation
 
+Just install them with pip:
+
+```sh
+pip3 install --user bubop
+
+# Or via poetry:
+poetry add bubop
+```
+
 ## Extra configuration
 
 ## Example - Usage
