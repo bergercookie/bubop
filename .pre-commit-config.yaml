@@ -17,6 +17,11 @@ repos:
       # - id: check-symlinks
       # - id: pretty-format-json
       # - id: sort-simple-yaml
+  - repo: https://github.com/markdownlint/markdownlint
+    rev: "v0.11.0"
+    hooks:
+      - id: markdownlint
+        entry: mdl -r ~MD033,~MD013
   - repo: local
     hooks:
       - id: black
