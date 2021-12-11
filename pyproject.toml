@@ -21,26 +21,40 @@ tqdm = "^4.62.3"
 isort = "^5.10.1"
 python-dateutil = "^2.8.2"
 PyYAML = "^6.0"
+
 [tool.poetry.dev-dependencies]
 pytest = "*"
-black = { version = "*", allow-prereleases = true }
+black = { version = "21.11b1", allow-prereleases = true }
 mock = "*"
 pdbpp = "^0.10.3"
-types-PyYAML = "^6.0.1"
 mypy = "*"
 pyright = "*"
 pyfakefs = "^4.5.3"
+pre-commit = "^2.16.0"
+identify = "^2.4.0"
+types-PyYAML = "^6.0.1"
+types-python-dateutil = "^2.8.3"
 
 [tool.isort]
-line_length = 95
 include_trailing_comma = true
+line_length = 95
 multi_line_output = 3
+profile = "black"
 
 [tool.black]
 experimental-string-processing = true
 line-length = 95
 target-version = ['py38', 'py39']
 include = '\.pyi?$'
+
+[tool.mypy]
+warn_return_any = true
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = ["tqdm", "pytest", "pexpect"]
+ignore_missing_imports = true
+
 
 [tool.pylint]
 [tool.pylint.'MESSAGES CONTROL']

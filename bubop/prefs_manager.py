@@ -54,7 +54,7 @@ class PrefsManager:
         self._app_name = app_name.strip()
         if self._app_name.endswith(".py"):
             self._app_name = self._app_name[:-3]
-        self._config_dir = CommonDir.config() / self._app_name
+        self._config_dir: Path = CommonDir.config() / self._app_name
         logger.debug(f"Initialising preferences manager -> {self._config_dir}")
         self._config_file: Path = self._config_dir / config_fname
 
@@ -110,7 +110,7 @@ class PrefsManager:
 
     def __getattr__(self, key: Any) -> Any:
         try:
-            return self.__getitem__(key=key)
+            return self.__getitem__(key)
         except KeyError:
             raise AttributeError
 

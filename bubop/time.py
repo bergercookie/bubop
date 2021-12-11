@@ -2,9 +2,9 @@
 
 import datetime
 from enum import Enum
-from typing import List, Optional
+from typing import List, cast
 
-import dateutil
+import dateutil.parser
 import dateutil.tz
 
 
@@ -99,10 +99,11 @@ def get_datetime_up_to(period: TimePeriod, dt: datetime.datetime) -> datetime.da
 
     to_discard = {p.name.lower(): 0 for p in period.lower_to_this()}
     to_keep = {
-        p.name.lower(): getattr(dt, p.name.lower()) for p in period.higher_or_equal_to_this()
+        p.name.lower(): cast(int, getattr(dt, (p.name.lower())))
+        for p in period.higher_or_equal_to_this()
     }
 
-    return datetime.datetime(**to_keep, **to_discard)
+    return datetime.datetime(**to_keep, **to_discard)  # type: ignore
 
 
 def is_same_datetime(
