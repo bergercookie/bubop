@@ -35,7 +35,7 @@ class PrefsManager:
         super().__init__()
 
         # sanity checks -----------------------------------------------------------------------
-        if platform.system():
+        if platform.system() not in ("Linux", "Darwin"):
             raise OperatingSystemNotSupportedError(
                 f'PrefsManager does not support current OS [{platform.system() or "UNKNOWN"}]'
             )
