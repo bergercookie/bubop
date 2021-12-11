@@ -1,4 +1,4 @@
-"""Time-related utilities"""
+"""Time-related utilities."""
 
 import datetime
 from enum import Enum
@@ -9,6 +9,8 @@ import dateutil.tz
 
 
 class TimePeriod(Enum):
+    """Holds different units of measuring time."""
+
     Microsecond = 0
     Second = 1
     Minute = 2
@@ -68,7 +70,7 @@ class TimePeriod(Enum):
         return out
 
 
-all_periods = [period for period in TimePeriod]
+all_periods = list(TimePeriod)
 
 
 def get_datetime_up_to(period: TimePeriod, dt: datetime.datetime) -> datetime.datetime:

@@ -1,5 +1,4 @@
-from loguru import logger
-
+"""Init."""
 from bubop.common_dir import CommonDir
 from bubop.crypto import read_gpg_token
 from bubop.exceptions import (
@@ -10,6 +9,7 @@ from bubop.exceptions import (
 from bubop.fs import FileType, get_valid_filename, valid_path
 from bubop.logging import (
     log_to_syslog,
+    logger,
     loguru_set_verbosity,
     loguru_tqdm_sink,
     verbosity_int_to_std_logging_lvl,

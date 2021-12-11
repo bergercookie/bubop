@@ -1,3 +1,4 @@
+"""Filesystem-related utilities."""
 import re
 from enum import Enum, auto
 from pathlib import Path
@@ -28,6 +29,9 @@ class FileType(Enum):
     FILE_OR_DIR = auto()
 
     def exists(self, path: Path) -> bool:
+        """
+        True if the give npath exists. Uses the appropriate function for the Filepath at hand.
+        """
         return _file_type_to_exists_fn[self](path)
 
 

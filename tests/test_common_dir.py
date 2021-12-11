@@ -2,7 +2,6 @@ from pathlib import Path
 
 import pytest
 
-import bubop.common_dir as common_dir
 from bubop import CommonDir, OperatingSystemNotSupportedError
 
 from .test_utils import set_system

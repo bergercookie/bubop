@@ -1,3 +1,4 @@
+"""Home of the PrefsManager class."""
 import atexit
 import platform
 from pathlib import Path
@@ -5,9 +6,9 @@ from typing import Any, Optional
 
 import yaml
 
-from bubop import logger
 from bubop.common_dir import CommonDir
 from bubop.exceptions import OperatingSystemNotSupportedError
+from bubop.logging import logger
 
 
 class PrefsManager:
@@ -34,7 +35,7 @@ class PrefsManager:
         super().__init__()
 
         # sanity checks -----------------------------------------------------------------------
-        if platform.system() not in ["Linux", "Darwin"]:
+        if platform.system():
             raise OperatingSystemNotSupportedError(
                 f'PrefsManager does not support current OS [{platform.system() or "UNKNOWN"}]'
             )
@@ -45,7 +46,7 @@ class PrefsManager:
             config_fname = f"{config_fname}.yaml"
         else:
             config_fname_ext = config_fname_parts[-1]
-            if config_fname_ext != "yaml" and config_fname_ext != "yml":
+            if config_fname_ext not in ("yaml", "yml"):
                 raise RuntimeError(
                     f"Only YAML config files are supported, can't handle {config_fname}."
                 )
@@ -85,10 +86,12 @@ class PrefsManager:
 
     @property
     def config_directory(self) -> Path:
+        """Get the path to the top-level config directory of the preferences at hand."""
         return self._config_dir
 
     @property
     def config_file(self) -> Path:
+        """Get the path to the config file of the preferences at hand."""
         return self._config_file
 
     def __enter__(self):
@@ -103,6 +106,7 @@ class PrefsManager:
         return len(self._conts)
 
     def empty(self) -> bool:
+        """Returns whether the current preferences store is empty."""
         return len(self._conts) == 0
 
     def __contains__(self, key: str) -> bool:
@@ -112,7 +116,7 @@ class PrefsManager:
         try:
             return self.__getitem__(key)
         except KeyError:
-            raise AttributeError
+            raise AttributeError from KeyError
 
     def __getitem__(self, key: Any) -> Any:
         self._latest_accessed = key

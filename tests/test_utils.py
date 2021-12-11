@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 
-import bubop.common_dir as common_dir
+from bubop import common_dir
 
 
 @contextmanager

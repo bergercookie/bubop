@@ -1,7 +1,6 @@
 import pytest
 
-import bubop.common_dir as common_dir
-from bubop import OperatingSystemNotSupportedError, PrefsManager
+from bubop import OperatingSystemNotSupportedError, PrefsManager, common_dir
 
 from .test_utils import set_system
 
