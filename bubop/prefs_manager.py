@@ -45,7 +45,7 @@ class PrefsManager:
             config_fname = f"{config_fname}.yaml"
         else:
             config_fname_ext = config_fname_parts[-1]
-            if config_fname_ext != "yaml" or config_fname_ext != "yml":
+            if config_fname_ext != "yaml" and config_fname_ext != "yml":
                 raise RuntimeError(
                     f"Only YAML config files are supported, can't handle {config_fname}."
                 )
