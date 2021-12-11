@@ -20,14 +20,8 @@ TODO Register app with codacy
 <a href="https://pepy.tech/project/bubop">
 <img alt="Downloads" src="https://pepy.tech/badge/bubop"></a>
 <a href="https://github.com/psf/black">
-
-<!-- markdownlint-disable-next-line -->
-
 <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 <a href="https://github.com/pre-commit/pre-commit">
-
-<!-- markdownlint-disable-next-line -->
-
 <img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white" alt="pre-commit"></a>
 
 ## Description
