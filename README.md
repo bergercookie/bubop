@@ -1,12 +1,9 @@
 # bubop - Bergercookie's Useful Bits Of Python
 
-TODO - WIP
-
-TODO Add logo
-TODO Register app with codacy
-
 <a href="https://github.com/bergercookie/bubop/actions" alt="CI">
 <img src="https://github.com/bergercookie/bubop/actions/workflows/ci.yml/badge.svg" /></a>
+<a href="https://github.com/pre-commit/pre-commit">
+<img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white" alt="pre-commit"></a>
 
 <img src="https://api.codacy.com/project/badge/Grade/9ddd71dc61914b32a0963d4101c29fb5"/></a>
 <a href="https://www.codacy.com/app/bergercookie/bubop">
@@ -21,8 +18,6 @@ TODO Register app with codacy
 <img alt="Downloads" src="https://pepy.tech/badge/bubop"></a>
 <a href="https://github.com/psf/black">
 <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
-<a href="https://github.com/pre-commit/pre-commit">
-<img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white" alt="pre-commit"></a>
 
 ## Description
 

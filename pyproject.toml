@@ -1,18 +1,27 @@
 [tool.poetry]
 name = "bubop"
-version = "0.1.3"
+version = "0.1.3a"
 description = "Bergercookie's Useful Bits Of Python"
 authors = ["Nikos Koukis <nickkouk@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-
 homepage = "https://github.com/bergercookie/bubop"
 repository = "https://github.com/bergercookie/bubop"
+include = ["bubop/py.typed"]
 classifiers = [
-  "Programming Language :: Python :: 3.8",
-  "License :: Other/Proprietary License",
+  "Framework :: Pytest",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: English",
   "Operating System :: Unix",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python",
+  "Topic :: Utilities",
 ]
+
+keywords = ["utilities", "utils"]
 
 # end-user dependencies --------------------------------------------------------
 [tool.poetry.dependencies]
@@ -21,7 +30,6 @@ loguru = "^0.5.3"
 tqdm = "^4.62.3"
 python-dateutil = "^2.8.2"
 PyYAML = "^6.0"
-
 
 # dev dependencies -------------------------------------------------------------
 [tool.poetry.dev-dependencies]
@@ -62,7 +70,6 @@ warn_unused_configs = true
 module = ["tqdm", "pytest", "pexpect"]
 ignore_missing_imports = true
 
-
 # pylint -----------------------------------------------------------------------
 [tool.pylint]
 [tool.pylint.master]
@@ -85,7 +92,6 @@ ignore-imports = "yes"
 # ignore-signatures=no
 min-similarity-lines = 4
 
-
 [tool.pylint.format]
 max-line-length = 95
 ignore-invalid-name = true
@@ -93,7 +99,6 @@ max-module-lines = 500
 
 [tool.pylint.string]
 check-quote-consistency = "yes"
-
 
 # pyright ----------------------------------------------------------------------
 [tool.pyright]
