@@ -2,7 +2,7 @@
 import atexit
 import platform
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Optional, Sequence
 
 import yaml
 
@@ -79,7 +79,7 @@ class PrefsManager:
             with self._config_file.open("r") as f:
                 self._conts = yaml.load(f, Loader=yaml.Loader)
         else:
-            self._config_file.touch()
+            self._config_file.write_text("{}")
             self._conts = {}
 
         atexit.register(self.cleanup)
@@ -104,6 +104,18 @@ class PrefsManager:
     def len(self) -> int:
         """Length of the currently stored preferences."""
         return len(self._conts)
+
+    def keys(self) -> Sequence[Any]:
+        """Return the list of keys in the Preferences Manager"""
+        return list(self._conts.keys())
+
+    def values(self):
+        """Return the list of values in the Preferences Manager"""
+        return self._conts.values()
+
+    def items(self):
+        """Return the items in the Preferences Manager - similar to a dict."""
+        return self._conts.items()
 
     def empty(self) -> bool:
         """Returns whether the current preferences store is empty."""

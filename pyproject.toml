@@ -30,6 +30,7 @@ loguru = "^0.5.3"
 tqdm = "^4.62.3"
 python-dateutil = "^2.8.2"
 PyYAML = "^6.0"
+click = { version = "^8.0.3", optional = true }
 
 # dev dependencies -------------------------------------------------------------
 [tool.poetry.dev-dependencies]
