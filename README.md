@@ -5,7 +5,6 @@
 <a href="https://github.com/pre-commit/pre-commit">
 <img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white" alt="pre-commit"></a>
 
-<img src="https://api.codacy.com/project/badge/Grade/9ddd71dc61914b32a0963d4101c29fb5"/></a>
 <a href='https://coveralls.io/github/bergercookie/bubop?branch=master'>
 <img src='https://coveralls.io/repos/github/bergercookie/bubop/badge.svg?branch=master' alt='Coverage Status' /></a>
 <a href="https://github.com/bergercookie/bubop/blob/master/LICENSE.md" alt="LICENSE">

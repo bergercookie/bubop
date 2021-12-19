@@ -30,6 +30,19 @@ class CliIncompatibleOptionsError(BaseException):
         )
 
 
+class NotEnoughArgumentsError(BaseException):
+    """
+    Exception raised when incompatible options are given in the CLI of a program.
+
+    >>> raise NotEnoughArgumentsError()
+    Traceback (most recent call last):
+    bubop.exceptions.NotEnoughArgumentsError: ...
+    """
+
+    def __init__(self):
+        super().__init__("Not enough arguments provided")
+
+
 class TooShallowStackError(BaseException):
     """
     Exception raised when the stack trace does not have as many frames as expected.

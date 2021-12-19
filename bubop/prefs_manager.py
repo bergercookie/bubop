@@ -6,7 +6,7 @@ from typing import Any, Optional, Sequence
 
 import yaml
 
-from bubop.common_dir import CommonDir
+from bubop import common_dir
 from bubop.exceptions import OperatingSystemNotSupportedError
 from bubop.logging import logger
 
@@ -55,7 +55,7 @@ class PrefsManager:
         self._app_name = app_name.strip()
         if self._app_name.endswith(".py"):
             self._app_name = self._app_name[:-3]
-        self._config_dir: Path = CommonDir.config() / self._app_name
+        self._config_dir: Path = common_dir.CommonDir.config() / self._app_name
         logger.debug(f"Initialising preferences manager -> {self._config_dir}")
         self._config_file: Path = self._config_dir / config_fname
 
@@ -82,7 +82,7 @@ class PrefsManager:
             self._config_file.write_text("{}")
             self._conts = {}
 
-        atexit.register(self.cleanup)
+        atexit.register(self._cleanup)
 
     @property
     def config_directory(self) -> Path:
@@ -98,10 +98,10 @@ class PrefsManager:
         return self
 
     def __exit__(self, *_):
-        self.cleanup()
-        atexit.unregister(self.cleanup)
+        self._cleanup()
+        atexit.unregister(self._cleanup)
 
-    def len(self) -> int:
+    def __len__(self) -> int:
         """Length of the currently stored preferences."""
         return len(self._conts)
 
@@ -146,7 +146,7 @@ class PrefsManager:
             )
         self._conts[self._latest_accessed] = new_val
 
-    def cleanup(self):
+    def _cleanup(self):
         """Class destruction code."""
         if not self._cleaned_up:
             self.flush_config(self._config_file)

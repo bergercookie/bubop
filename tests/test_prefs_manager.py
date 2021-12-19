@@ -1,8 +1,10 @@
+from pathlib import Path
+from unittest.mock import patch
+
 import pytest
 
-from bubop import OperatingSystemNotSupportedError, PrefsManager, common_dir
-
-from .test_utils import set_system
+import bubop.common_dir as common_dir
+from bubop import OperatingSystemNotSupportedError, PrefsManager
 
 
 class TestPrefsManager:
@@ -12,6 +14,45 @@ class TestPrefsManager:
             assert prefs_manager.config_directory.name == "myapp"
             assert prefs_manager.config_file.name == "custom_name.yaml"
             assert prefs_manager.config_file.parent.name == "myapp"
+
+    @pytest.mark.parametrize("fs", [[None, [common_dir]]], indirect=True)
+    def test_config_fname_no_ext(self, fs):
+        with PrefsManager(app_name="myapp", config_fname="custom_name") as prefs_manager:
+            assert prefs_manager.config_file.name == "custom_name.yaml"
+
+    @pytest.mark.parametrize("fs", [[None, [common_dir]]], indirect=True)
+    def test_app_name_ends_in_py(self, fs):
+        with PrefsManager(app_name="myapp.py") as prefs_manager:
+            assert prefs_manager.config_directory.name == "myapp"
+
+    @pytest.mark.parametrize("fs", [[None, [common_dir]]], indirect=True)
+    def test_dict_functions(self, fs):
+        with PrefsManager(app_name="myapp") as prefs_manager:
+            prefs_manager["a"] = 1
+            prefs_manager["b"] = 2
+            prefs_manager["c"] = 3
+            assert prefs_manager.keys() == list("abc")
+            assert list(prefs_manager.values()) == list([1, 2, 3])
+            assert list(prefs_manager.items()) == list(zip("abc", [1, 2, 3]))
+            assert len(prefs_manager) == 3
+
+            assert "a" in prefs_manager
+            assert "b" in prefs_manager
+            assert "d" not in prefs_manager
+
+    @pytest.mark.parametrize("fs", [[None, [common_dir]]], indirect=True)
+    def test_multiple_cleanups(self, fs):
+        prefs_manager = PrefsManager(app_name="myapp")
+        prefs_manager._cleanup()
+        prefs_manager._cleanup()
+
+    @pytest.mark.parametrize("fs", [[None, [common_dir]]], indirect=True)
+    def test_config_dir_is_file(self, fs):
+        app = "app"
+        Path("~/.config").expanduser().mkdir(parents=True)
+        Path(f"~/.config/app").expanduser().touch()
+        with pytest.raises(NotADirectoryError):
+            PrefsManager(app_name=app)
 
     @pytest.mark.parametrize("fs", [[None, [common_dir]]], indirect=True)
     def test_set_get(self, fs):
@@ -73,7 +114,8 @@ class TestPrefsManager:
         with pytest.raises(RuntimeError):
             PrefsManager(app_name="test", config_fname="cfg.toml")
 
-    def test_raise_unsupported_system(self, fs):
-        with set_system("random os"):
-            with pytest.raises(OperatingSystemNotSupportedError):
-                PrefsManager(app_name="test1")
+    @patch("platform.system")
+    def test_raise_unsupported_system(self, mock_system):
+        mock_system.return_value = "random"
+        with pytest.raises(OperatingSystemNotSupportedError):
+            PrefsManager(app_name="test1")

@@ -5,6 +5,7 @@ from bubop.crypto import read_gpg_token
 from bubop.exceptions import (
     CliIncompatibleOptionsError,
     NoSuchFileOrDirectoryError,
+    NotEnoughArgumentsError,
     OperatingSystemNotSupportedError,
 )
 from bubop.fs import FileType, get_valid_filename, valid_path

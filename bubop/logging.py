@@ -24,9 +24,19 @@ _verbosity_int_to_str: Mapping[int, LoguruLogLevel] = {0: "INFO", 1: "DEBUG", 2:
 def verbosity_int_to_str(verbosity: int) -> LoguruLogLevel:
     """
     Map a verbosity integer to the corresponding Loguru Level.
-    :param verbosity: 0 for >= INFO,
-                      1 for >= DEBUG,
-                      2 for >= TRACE
+    :param verbosity: = 0 -> INFO,
+                      = 1 -> DEBUG,
+                      >=2 -> TRACE
+
+    >>> verbosity_int_to_str(1)
+    'DEBUG'
+    >>> verbosity_int_to_str(2)
+    'TRACE'
+    >>> verbosity_int_to_str(3)
+    'TRACE'
+    >>> verbosity_int_to_str(-1)
+    Traceback (most recent call last):
+    RuntimeError: ...
     """
     if verbosity < 0:
         raise RuntimeError("verbosity must be >= 0")
@@ -104,6 +114,18 @@ def verbosity_int_to_std_logging_lvl(verbosity: int) -> int:
     :param verbosity: Set the verbosity of the tqdm logger.
                       0 for >= INFO,
                       1 for >= DEBUG,
+
+    >>> verbosity_int_to_std_logging_lvl(0)
+    20
+    >>> verbosity_int_to_std_logging_lvl(1)
+    10
+    >>> verbosity_int_to_std_logging_lvl(2)
+    10
+    >>> verbosity_int_to_std_logging_lvl(3)
+    10
+    >>> verbosity_int_to_std_logging_lvl(-1)
+    Traceback (most recent call last):
+    RuntimeError: ...
     """
     if verbosity < 0:
         raise RuntimeError("verbosity must be >= 0")
