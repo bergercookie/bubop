@@ -44,8 +44,8 @@ repos:
         language: system
         pass_filenames: true
         types_or: [python, pyi]
-      - id: Pylint check
-        name: pylint
+      - id: pylint
+        name: Pylint check
         entry: pylint
         language: system
         pass_filenames: true

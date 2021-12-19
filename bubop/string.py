@@ -1,6 +1,6 @@
 """String-related utilities."""
 
-from typing import Sequence
+from typing import Any, Mapping, Sequence
 
 
 def non_empty(title: str, value: str, join_with: str = " -> ", newline=True) -> str:
@@ -19,8 +19,14 @@ def non_empty(title: str, value: str, join_with: str = " -> ", newline=True) -> 
         return ""
 
 
-def format_items(
-    items: Sequence[str], header: str, indent=2, bullet_char="-", header_sep="="
+def format_list(  # pylint: disable=R0913
+    items: Sequence[str],
+    header: str,
+    indent=2,
+    bullet_char="-",
+    header_sep="=",
+    prefix: str = "",
+    suffix: str = "",
 ) -> str:
     """
     Format and return a string with the corresponding header and all the items each occupying a
@@ -35,4 +41,22 @@ def format_items(
     s += "\n\n"
     s += "\n".join(f'{" " * indent}{bullet_char} {item}' for item in items)
     s += "\n\n"
-    return s
+    return f"{prefix}{s}{suffix}"
+
+
+def format_dict(items: Mapping[Any, Any], align_items: bool = True, **kargs) -> str:
+    """
+    Utility for formatting a dictionary - similar to print.pformat.
+
+    Accepts mostly the same arguments as format_list.
+    """
+
+    items_: Sequence[str]
+    if align_items:
+        keys_length = max(len(str(key)) for key in items.keys())
+        format_ = "{0: <%d}" % keys_length  # pylint: disable=C0209
+        items_ = [f"{format_.format(k)}: {v}" for k, v in items.items()]
+    else:
+        items_ = [f"{k}: {v}" for k, v in items.items()]
+
+    return format_list(items=items_, **kargs)  # type: ignore
