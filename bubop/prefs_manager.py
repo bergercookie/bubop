@@ -8,7 +8,7 @@ import yaml
 
 from bubop import common_dir
 from bubop.exceptions import OperatingSystemNotSupportedError
-from bubop.logging import logger
+from bubop.logging import logger as bubop_logger
 
 
 class PrefsManager:
@@ -20,7 +20,7 @@ class PrefsManager:
     using them as attributes: (``prefs_manager.key``)
     """
 
-    def __init__(self, app_name: str, config_fname: str = "cfg.yaml"):
+    def __init__(self, app_name: str, config_fname: str = "cfg.yaml", logger=bubop_logger):
         """Initialization method.
 
         :param app_name: Name of the application the PrefsManager is running under. This is
@@ -52,11 +52,12 @@ class PrefsManager:
                 )
 
         # initialize --------------------------------------------------------------------------
+        self._logger = logger
         self._app_name = app_name.strip()
         if self._app_name.endswith(".py"):
             self._app_name = self._app_name[:-3]
         self._config_dir: Path = common_dir.CommonDir.config() / self._app_name
-        logger.debug(f"Initialising preferences manager -> {self._config_dir}")
+        self._logger.debug(f"Initialising preferences manager -> {self._config_dir}")
         self._config_file: Path = self._config_dir / config_fname
 
         self._cleaned_up = False
@@ -68,11 +69,11 @@ class PrefsManager:
         # Load the preferences file -----------------------------------------------------------
         # If _config_dir doesn't exist this along with all the files in it should be created
         if self._config_dir.is_dir():
-            logger.info("Loading preferences...")
+            self._logger.info("Loading preferences...")
         elif self._config_dir.is_file():
             raise NotADirectoryError(self._config_dir)
         else:
-            logger.info("Creating preferences directory from scratch...")
+            self._logger.info("Creating preferences directory from scratch...")
             self._config_dir.mkdir(parents=True, exist_ok=False)
 
         if self._config_file.exists():

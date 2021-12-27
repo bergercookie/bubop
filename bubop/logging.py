@@ -57,7 +57,7 @@ def loguru_set_verbosity(verbosity: int):
     loguru.logger.add(
         sys.stderr,  # type: ignore
         format=(
-            "<green>{time:HH:mm:ss.SS}</green> | <level>{level}</level> \t|"
+            "<green>{time:HH:mm:ss.SS}</green> | <level>{level:8}</level> \t|"
             " <level>{message}</level>"
         ),
         level=verbosity_int_to_str(verbosity),
@@ -76,7 +76,7 @@ def loguru_tqdm_sink(verbosity: int):
     loguru.logger.add(
         lambda msg: tqdm.tqdm.write(msg, end=""),  # type: ignore
         format=(
-            "<green>{time:HH:mm:ss.SS}</green> | <level>{level}</level> \t|"
+            "<green>{time:HH:mm:ss.SS}</green> | <level>{level:8}</level> \t|"
             " <level>{message}</level>"
         ),
         level=verbosity_int_to_str(verbosity),
