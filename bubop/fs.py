@@ -97,10 +97,10 @@ def valid_file(s: str) -> Path:
     """Return a pathlib.Path from the given string.
 
     If the input does not correspond to a valid directory, then raise an exception
-    >>> valid_dir("/etc/")
+    >>> valid_file("/etc/")
     Traceback (most recent call last):
     FileNotFoundError: ...
-    >>> valid_dir("/etc/passwd")
+    >>> valid_file("/etc/passwd")
     PosixPath...
     """
     return valid_path(s, filetype=FileType.FILE)
