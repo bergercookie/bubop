@@ -79,6 +79,33 @@ def valid_path(s: str, filetype=FileType.FILE_OR_DIR) -> Path:
     return path
 
 
+def valid_dir(s: str) -> Path:
+    """Return a pathlib.Path from the given string.
+
+    If the input does not correspond to a valid directory, then raise an exception
+
+    >>> valid_dir("/etc/")
+    PosixPath...
+    >>> valid_dir("/etc/passwd")
+    Traceback (most recent call last):
+    NotADirectoryError: ...
+    """
+    return valid_path(s, filetype=FileType.DIR)
+
+
+def valid_file(s: str) -> Path:
+    """Return a pathlib.Path from the given string.
+
+    If the input does not correspond to a valid directory, then raise an exception
+    >>> valid_dir("/etc/")
+    Traceback (most recent call last):
+    FileNotFoundError: ...
+    >>> valid_dir("/etc/passwd")
+    PosixPath...
+    """
+    return valid_path(s, filetype=FileType.FILE)
+
+
 def get_valid_filename(s: str) -> str:
     """Return a filename-compatible version of the given string s.
 

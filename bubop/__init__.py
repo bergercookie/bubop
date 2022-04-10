@@ -8,7 +8,7 @@ from bubop.exceptions import (
     NotEnoughArgumentsError,
     OperatingSystemNotSupportedError,
 )
-from bubop.fs import FileType, get_valid_filename, valid_path
+from bubop.fs import FileType, get_valid_filename, valid_dir, valid_file, valid_path
 from bubop.inspect import inspect_var_name
 from bubop.logging import (
     log_to_syslog,
@@ -49,6 +49,8 @@ __all__ = [
     "pickle_dump",
     "pickle_load",
     "read_gpg_token",
+    "valid_dir",
+    "valid_file",
     "valid_path",
     "verbosity_int_to_std_logging_lvl",
     "verbosity_int_to_str",
