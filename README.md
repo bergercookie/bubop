@@ -33,7 +33,3 @@ pip3 install --user bubop
 # Or via poetry:
 poetry add bubop
 ```
-
-## Extra configuration
-
-## Example - Usage
