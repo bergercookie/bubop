@@ -59,3 +59,5 @@ __all__ = [
     "verbosity_int_to_str",
     "xor",
 ]
+
+__version__ = "0.1.7"
