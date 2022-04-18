@@ -3,6 +3,7 @@ from bubop.cli import check_optional_mutually_exclusive, check_required_mutually
 from bubop.common_dir import CommonDir
 from bubop.crypto import read_gpg_token
 from bubop.exceptions import (
+    AuthenticationError,
     CliIncompatibleOptionsError,
     NoSuchFileOrDirectoryError,
     NotEnoughArgumentsError,
@@ -25,10 +26,12 @@ from bubop.string import format_dict, format_list, non_empty
 from bubop.time import format_datetime_tz, is_same_datetime, parse_datetime
 
 __all__ = [
+    "AuthenticationError",
     "CliIncompatibleOptionsError",
     "CommonDir",
     "FileType",
     "NoSuchFileOrDirectoryError",
+    "NotEnoughArgumentsError",
     "OperatingSystemNotSupportedError",
     "PrefsManager",
     "check_optional_mutually_exclusive",

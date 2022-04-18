@@ -50,3 +50,21 @@ class TooShallowStackError(BaseException):
 
     def __init__(self):
         super().__init__("Stack has less frames than expected")
+
+
+class ApplicationNotInstalled(BaseException):
+    """
+    Exception raised when a required application is not installed on the system.
+    """
+
+    def __init__(self, appname: str):
+        super().__init__(f"Application {appname} is not installed")
+
+
+class AuthenticationError(BaseException):
+    """
+    Exception raised when authentication with a certain application/service failed
+    """
+
+    def __init__(self, appname: str):
+        super().__init__(f"Authentication with {appname} failed.")
