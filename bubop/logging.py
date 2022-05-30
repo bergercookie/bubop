@@ -2,12 +2,11 @@
 import logging
 import logging.handlers
 import sys
-from typing import Mapping
+from typing import Literal, Mapping
 
 import loguru
 import tqdm
 from loguru import logger  # pylint: disable=W0611
-from typing_extensions import Literal
 
 LoguruLogLevel = Literal[
     "FATAL",
