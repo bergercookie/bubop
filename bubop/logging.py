@@ -6,7 +6,10 @@ from typing import Literal, Mapping
 
 import loguru
 import tqdm
-from loguru import logger  # pylint: disable=W0611
+from loguru import logger as logger_
+
+# This is my re-exported symbol. Silence linters
+logger = logger_
 
 LoguruLogLevel = Literal[
     "FATAL",

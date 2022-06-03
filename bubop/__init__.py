@@ -1,7 +1,8 @@
 """Init."""
+from bubop.classes import all_subclasses
 from bubop.cli import check_optional_mutually_exclusive, check_required_mutually_exclusive
 from bubop.common_dir import CommonDir
-from bubop.crypto import read_gpg_token
+from bubop.crypto import read_gpg_token, write_gpg_token
 from bubop.exceptions import (
     AuthenticationError,
     CliIncompatibleOptionsError,
@@ -22,7 +23,7 @@ from bubop.logging import (
 from bubop.misc import get_object_unique_name, xor
 from bubop.prefs_manager import PrefsManager
 from bubop.serial import pickle_dump, pickle_load
-from bubop.string import format_dict, format_list, non_empty
+from bubop.string import camel_case_to_dashed, format_dict, format_list, non_empty
 from bubop.time import format_datetime_tz, is_same_datetime, parse_datetime
 
 __all__ = [
@@ -34,6 +35,8 @@ __all__ = [
     "NotEnoughArgumentsError",
     "OperatingSystemNotSupportedError",
     "PrefsManager",
+    "all_subclasses",
+    "camel_case_to_dashed",
     "check_optional_mutually_exclusive",
     "check_required_mutually_exclusive",
     "format_datetime_tz",
@@ -52,6 +55,7 @@ __all__ = [
     "pickle_dump",
     "pickle_load",
     "read_gpg_token",
+    "write_gpg_token",
     "valid_dir",
     "valid_file",
     "valid_path",

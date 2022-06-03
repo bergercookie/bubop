@@ -1,6 +1,31 @@
 """String-related utilities."""
 
-from typing import Any, Mapping, Sequence
+from typing import Any, List, Mapping, Sequence
+
+
+def camel_case_to_dashed(s: str) -> str:
+    """
+    Convert a CamelCase string into the dashed representation.
+
+    >>> camel_case_to_dashed("KalimeraKalinuxta")
+    'kalimera-kalinuxta'
+    >>> camel_case_to_dashed("somethingIsRotten")
+    'something-is-rotten'
+    >>> camel_case_to_dashed("SLAM")
+    'slam'
+    """
+    new_chars: List[str] = []
+    last_char = ""
+    for char in s:
+        if char.isupper():
+            if not last_char.isupper():
+                new_chars.append("-")
+            new_chars.append(char.lower())
+        else:
+            new_chars.append(char)
+
+        last_char = char
+    return "".join(new_chars).lstrip("-")
 
 
 def non_empty(title: str, value: str, join_with: str = " -> ", newline=True) -> str:

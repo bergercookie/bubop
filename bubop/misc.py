@@ -27,4 +27,4 @@ def xor(*args) -> bool:
     >>> xor("", "", "")
     False
     """
-    return sum([bool(i) for i in args]) == 1
+    return sum((bool(i) for i in args)) == 1
