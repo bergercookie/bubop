@@ -13,7 +13,10 @@ def read_gpg_token(p: Path, timeout_secs: int = 3) -> str:
         raise RuntimeError("gpg is required but it's not installed.")
 
     proc = subprocess.run(
-        ["gpg", "--decrypt", "-q", str(p)], capture_output=True, timeout=timeout_secs, check=True
+        ["gpg", "--decrypt", "-q", str(p)],
+        capture_output=True,
+        timeout=timeout_secs,
+        check=True,
     )
     return proc.stdout.decode("utf-8").rstrip("\n")
 
