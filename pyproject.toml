@@ -98,7 +98,6 @@ min-similarity-lines = 4
 
 [tool.pylint.format]
 max-line-length = 95
-ignore-invalid-name = true
 max-module-lines = 500
 
 [tool.pylint.string]

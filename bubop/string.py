@@ -1,5 +1,7 @@
 """String-related utilities."""
 
+import random
+import string
 from typing import Any, List, Mapping, Sequence
 
 
@@ -90,3 +92,8 @@ def format_dict(items: Mapping[Any, Any], align_items: bool = True, **kargs) -> 
         items_ = [f"{k}: {v}" for k, v in items.items()]
 
     return format_list(items=items_, **kargs)  # type: ignore
+
+
+def get_random_string(len_=10) -> str:
+    """Return a random string containing ascii characters, digits and punctuation marks."""
+    return "".join(random.choice(string.ascii_letters + string.digits) for _ in range(len_))

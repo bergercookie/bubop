@@ -126,3 +126,13 @@ def get_valid_filename(s: str) -> str:
     """
     s = str(s).strip().replace(" ", "_")
     return re.sub(r"(?u)[^-\w.]", "_", s)
+
+
+def get_file_unique_id(p: Path) -> str:
+    """Get a unique identifier for the filesystem entity at hand.
+
+    Use a combination of device ID and inode.
+    """
+
+    stat = p.stat()
+    return f"0x{stat.st_dev:02x}/0x{stat.st_ino:02x}"
