@@ -108,6 +108,33 @@ def get_datetime_up_to(period: TimePeriod, dt: datetime.datetime) -> datetime.da
     return datetime.datetime(**to_keep, **to_discard)  # type: ignore
 
 
+def assume_local_tz_if_none(dt: datetime.datetime) -> datetime.datetime:
+    """If there is no timezone in the given datetime object, assign a local timezone.
+
+    In all cases return a new instance of the datetime object.
+
+    >>> dt = datetime.datetime(2019, 3, 8, 0, 29, 6)
+    >>> dt.tzinfo is None
+    True
+    >>> dt = assume_local_tz_if_none(dt)
+    >>> dt.tzinfo is None
+    False
+
+    >>> dt_old = datetime.datetime.now(tz=dateutil.tz.tzlocal())
+    >>> dt_old.tzinfo is not None
+    True
+    >>> dt = assume_local_tz_if_none(dt_old)
+    >>> dt.tzinfo is None
+    False
+    """
+    if dt.tzinfo is None:
+        out = dt.replace(tzinfo=dateutil.tz.tzlocal())
+    else:
+        out = dt
+
+    return out
+
+
 def is_same_datetime(
     dt1: datetime.datetime,
     dt2: datetime.datetime,
@@ -133,16 +160,8 @@ def is_same_datetime(
     assert isinstance(dt2, datetime.datetime)
 
     # if there is no timezone, assume local timezone
-    if dt1.tzinfo is None:
-        dt1_ = dt1.replace(tzinfo=dateutil.tz.tzlocal())
-    else:
-        dt1_ = dt1
-
-    if dt2.tzinfo is None:
-        dt2_ = dt2.replace(tzinfo=dateutil.tz.tzlocal())
-    else:
-        dt2_ = dt2
-
+    dt1_ = assume_local_tz_if_none(dt1)
+    dt2_ = assume_local_tz_if_none(dt2)
     return abs(dt1_ - dt2_) <= tol
 
 
@@ -151,11 +170,11 @@ def parse_datetime(s: str) -> datetime.datetime:
 
     >>> parse_datetime("2019-03-05") == datetime.datetime(2019, 3, 5, 0, 0)
     True
-    >>> is_same_datetime(parse_datetime("2019-03-05T00:03:09Z"), datetime.datetime(2019, 3, 5, 0, 3, 9))
+    >>> is_same_datetime(parse_datetime("2019-03-05T00:03:09Z"), datetime.datetime(2019, 3, 5, 0, 3, 9, tzinfo=dateutil.tz.tzutc()))
     True
-    >>> is_same_datetime(parse_datetime("2019-03-05T00:03:01.1234Z"), datetime.datetime(2019, 3, 5, 0, 3, 1, 123400))
+    >>> is_same_datetime(parse_datetime("2019-03-05T00:03:01.1234Z"), datetime.datetime(2019, 3, 5, 0, 3, 1, 123400, tzinfo=dateutil.tz.tzutc()))
     True
-    >>> is_same_datetime(parse_datetime("2019-03-08T00:29:06.602Z"), datetime.datetime(2019, 3, 8, 0, 29, 6, 602000))
+    >>> is_same_datetime(parse_datetime("2019-03-08T00:29:06.602Z"), datetime.datetime(2019, 3, 8, 0, 29, 6, 602000, tzinfo=dateutil.tz.tzutc()))
     True
     """
     return dateutil.parser.parse(s)

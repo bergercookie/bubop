@@ -11,6 +11,8 @@ def inspect_var_name(var: Any, level=2) -> Optional[str]:
     Use the `level` argument to refer to the argument name of the caller's caller (level=2) or
     the caller's caller's caller, (level=3) etc. instead.
 
+    Quite experimental function in nature, may not work as expected.
+
     Usage::
 
     >>> var1 = "kalimera"

@@ -1,6 +1,6 @@
 """Custom Exceptions."""
 
-from typing import Any
+from typing import Any, Optional
 
 
 class NoSuchFileOrDirectoryError(BaseException):
@@ -28,6 +28,44 @@ class CliIncompatibleOptionsError(BaseException):
         super().__init__(
             f"Provided option groups {opt1} and {opt2} are incompatible with each other"
         )
+
+
+class NOptionsRequired(BaseException):
+    """
+    Exception raised when at least N of the given options were required
+    """
+
+    def __init__(
+        self, prefix: str, num_required: int, *args, num_given: Optional[int] = None, **kargs
+    ):
+        args_str1 = " | ".join(kargs.values())
+        args_str2 = " | ".join(args)
+        args_str = f"{args_str1} {args_str2}"
+        s = f"{prefix} {num_required} of the following arguments are required:\n\t{args_str}"
+        if num_given is not None:
+            s += f"\n\nOnly {num_given} were given."
+        super().__init__(s)
+
+
+class AtLeastNOptionsRequired(NOptionsRequired):
+    """AtLeastNOptionsRequired exception."""
+
+    def __init__(self, *args, **kargs):
+        super().__init__(prefix="At least", *args, **kargs)
+
+
+class ExactlyNOptionsRequired(NOptionsRequired):
+    """ExactlyNOptionsRequired exception."""
+
+    def __init__(self, *args, **kargs):
+        super().__init__(prefix="Exactly", *args, **kargs)
+
+
+class Exactly1OptionRequired(ExactlyNOptionsRequired):
+    """Exactly1OptionRequired exception."""
+
+    def __init__(self, *args, **kargs):
+        super().__init__(num_required=1, *args, **kargs)
 
 
 class NotEnoughArgumentsError(BaseException):

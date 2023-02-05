@@ -31,7 +31,12 @@ from bubop.string import (
     get_random_string,
     non_empty,
 )
-from bubop.time import format_datetime_tz, is_same_datetime, parse_datetime
+from bubop.time import (
+    assume_local_tz_if_none,
+    format_datetime_tz,
+    is_same_datetime,
+    parse_datetime,
+)
 
 __all__ = [
     "AuthenticationError",
@@ -44,6 +49,7 @@ __all__ = [
     "PrefsManager",
     "add_bool_argument",
     "all_subclasses",
+    "assume_local_tz_if_none",
     "camel_case_to_dashed",
     "check_optional_mutually_exclusive",
     "check_required_mutually_exclusive",
