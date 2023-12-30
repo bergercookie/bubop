@@ -1,4 +1,5 @@
 """Init."""
+
 from bubop.arg_parser import add_bool_argument
 from bubop.classes import all_subclasses
 from bubop.cli import check_optional_mutually_exclusive, check_required_mutually_exclusive
@@ -37,6 +38,8 @@ from bubop.time import (
     is_same_datetime,
     parse_datetime,
 )
+
+from bubop.exit_hooks import ExitHooks
 
 __all__ = [
     "AuthenticationError",
@@ -77,6 +80,7 @@ __all__ = [
     "verbosity_int_to_std_logging_lvl",
     "verbosity_int_to_str",
     "xor",
+    "ExitHooks",
 ]
 
 __version__ = "0.1.11"
