@@ -48,7 +48,9 @@ class PrefsManager:
             config_fname_ext = config_fname_parts[-1]
             if config_fname_ext not in ("yaml", "yml"):
                 raise RuntimeError(
-                    f"Only YAML config files are supported, can't handle {config_fname}."
+                    "Only YAML config files are supported, can't handle extension"
+                    f" {config_fname_ext}. If you have a dot inside the config filename,"
+                    " please specify the .yaml/.yml extension explicitly"
                 )
 
         # initialize --------------------------------------------------------------------------
