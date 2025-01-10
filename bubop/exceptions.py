@@ -4,7 +4,15 @@ from typing import Any
 
 
 class NoSuchFileOrDirectoryError(BaseException):
-    """Exception raised when file/directory is not found."""
+    """Exception raised when file/directory is not found.
+
+    Usage::
+
+        >>> raise NoSuchFileOrDirectoryError("foo")
+        Traceback (most recent call last):
+        bubop.exceptions.NoSuchFileOrDirectoryError: No such file or directory -> foo
+
+    """
 
     def __init__(self, name):
         super().__init__(f"No such file or directory -> {name}")
@@ -13,6 +21,12 @@ class NoSuchFileOrDirectoryError(BaseException):
 class OperatingSystemNotSupportedError(BaseException):
     """
     Exception raised when an operation is not supported for the OS at hand.
+
+    Usage::
+
+        >>> raise OperatingSystemNotSupportedError("Windows")
+        Traceback (most recent call last):
+        bubop.exceptions.OperatingSystemNotSupportedError: Operation is not supported for this OS -> Windows
     """
 
     def __init__(self, os_name: str):
@@ -22,6 +36,12 @@ class OperatingSystemNotSupportedError(BaseException):
 class CliIncompatibleOptionsError(BaseException):
     """
     Exception raised when incompatible options are given in the CLI of a program.
+
+    Usage::
+
+        >>> raise CliIncompatibleOptionsError("foo", "bar")
+        Traceback (most recent call last):
+        bubop.exceptions.CliIncompatibleOptionsError: Provided option groups foo and bar are incompatible with each other
     """
 
     def __init__(self, opt1: Any, opt2: Any):
@@ -48,21 +68,45 @@ class NOptionsRequired(BaseException):
 
 
 class AtLeastNOptionsRequired(NOptionsRequired):
-    """AtLeastNOptionsRequired exception."""
+    """AtLeastNOptionsRequired exception.
+
+    Usage::
+
+        >>> raise AtLeastNOptionsRequired(num_required=2, foo="bar", baz="bing")
+        Traceback (most recent call last):
+        bubop.exceptions.AtLeastNOptionsRequired: At least 2 of the following arguments are required:
+
+    """
 
     def __init__(self, *args, **kargs):
         super().__init__(prefix="At least", *args, **kargs)
 
 
 class ExactlyNOptionsRequired(NOptionsRequired):
-    """ExactlyNOptionsRequired exception."""
+    """ExactlyNOptionsRequired exception.
+
+    Usage::
+
+        >>> raise ExactlyNOptionsRequired(num_required=2, foo="bar", baz="bing")
+        Traceback (most recent call last):
+        bubop.exceptions.ExactlyNOptionsRequired: Exactly 2 of the following arguments are required:
+        ...
+    """
 
     def __init__(self, *args, **kargs):
         super().__init__(prefix="Exactly", *args, **kargs)
 
 
 class Exactly1OptionRequired(ExactlyNOptionsRequired):
-    """Exactly1OptionRequired exception."""
+    """Exactly1OptionRequired exception.
+
+    Usage::
+
+        >>> raise Exactly1OptionRequired(num_given=0, foo="bar", baz="bing")
+        Traceback (most recent call last):
+        bubop.exceptions.Exactly1OptionRequired: Exactly 1 of the following arguments are required:
+        ...
+    """
 
     def __init__(self, *args, **kargs):
         super().__init__(num_required=1, *args, **kargs)
@@ -72,9 +116,11 @@ class NotEnoughArgumentsError(BaseException):
     """
     Exception raised when incompatible options are given in the CLI of a program.
 
-    >>> raise NotEnoughArgumentsError()
-    Traceback (most recent call last):
-    bubop.exceptions.NotEnoughArgumentsError: ...
+    Usage::
+
+        >>> raise NotEnoughArgumentsError()
+        Traceback (most recent call last):
+        bubop.exceptions.NotEnoughArgumentsError: ...
     """
 
     def __init__(self):
