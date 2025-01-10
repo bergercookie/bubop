@@ -24,6 +24,7 @@ jobs:
         python-version: ["3.10", "3.11", "3.12"]
     steps:
       # python/poetry setup
+      - uses: actions/checkout@v2
       - name: Setup poetry
         uses: abatilo/actions-poetry@v3.0.2
         with:
@@ -44,10 +45,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # python/poetry setup
+      - uses: actions/checkout@v2
       - name: Setup poetry
         uses: abatilo/actions-poetry@v3.0.2
         with:
           poetry-version: "1.7.1"
+
+      # setup tmate
+      - name: Setup tmate
+        uses: mxschmitt/action-tmate@v3
+        with:
+          # Set the wait-time, after which the action times out
+          wait-time: 30
+          limit-access-to-actor: true
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
@@ -62,6 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # python/poetry setup
+      - uses: actions/checkout@v2
       - name: Setup poetry
         uses: abatilo/actions-poetry@v3.0.2
         with:

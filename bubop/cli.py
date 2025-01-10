@@ -1,4 +1,5 @@
 """CLI-related utilities."""
+
 from typing import Any
 
 from bubop.exceptions import CliIncompatibleOptionsError, Exactly1OptionRequired

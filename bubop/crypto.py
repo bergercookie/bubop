@@ -1,4 +1,5 @@
 """Cryptography-related utilities."""
+
 import shutil
 import subprocess
 from pathlib import Path

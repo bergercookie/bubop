@@ -1,4 +1,5 @@
 """Runtime-related utilities - making use of the inspect module."""
+
 import inspect
 from typing import Any
 

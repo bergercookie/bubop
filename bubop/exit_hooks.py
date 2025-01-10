@@ -1,4 +1,5 @@
 """Exit hooks class."""
+
 import sys
 import traceback
 from collections.abc import Callable

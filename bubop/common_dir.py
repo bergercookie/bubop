@@ -1,4 +1,5 @@
 """Home of the CommonDir class."""
+
 import sys
 from pathlib import Path
 

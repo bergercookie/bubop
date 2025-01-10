@@ -1,4 +1,5 @@
 """Home of the PrefsManager class."""
+
 import atexit
 import platform
 from collections.abc import Sequence

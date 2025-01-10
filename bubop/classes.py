@@ -1,4 +1,5 @@
 """Class and metaclass-related utilities."""
+
 from typing import Any
 
 
