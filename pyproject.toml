@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bubop"
-version = "0.1.12"
+version = "0.2.0"
 description = "Bergercookie's Useful Bits Of Python"
 authors = ["Nikos Koukis <nickkouk@gmail.com>"]
 license = "MIT"
