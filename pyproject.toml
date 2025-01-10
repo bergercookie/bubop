@@ -17,6 +17,7 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Programming Language :: Python",
   "Topic :: Utilities",
 ]
@@ -25,7 +26,7 @@ keywords = ["utilities", "utils"]
 
 # end-user dependencies --------------------------------------------------------
 [tool.poetry.dependencies]
-python = ">=3.10.0,<3.13"
+python = ">=3.10.0,<4.0"
 loguru = "^0.7.3"
 tqdm = "^4.67.1"
 python-dateutil = "^2.9.0.post0"
