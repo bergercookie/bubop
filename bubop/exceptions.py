@@ -75,6 +75,7 @@ class AtLeastNOptionsRequired(NOptionsRequired):
         >>> raise AtLeastNOptionsRequired(num_required=2, foo="bar", baz="bing")
         Traceback (most recent call last):
         bubop.exceptions.AtLeastNOptionsRequired: At least 2 of the following arguments are required:
+        ...
 
     """
 
