@@ -100,6 +100,8 @@ class ExactlyNOptionsRequired(NOptionsRequired):
 class Exactly1OptionRequired(ExactlyNOptionsRequired):
     """Exactly1OptionRequired exception.
 
+    Some extra text here ...
+
     Usage::
 
         >>> raise Exactly1OptionRequired(num_given=0, foo="bar", baz="bing")
