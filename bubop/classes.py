@@ -1,8 +1,8 @@
 """Class and metaclass-related utilities."""
-from typing import Any, Set, Type
+from typing import Any
 
 
-def all_subclasses(cls: Type[Any]) -> Set[Type[Any]]:
+def all_subclasses(cls: type[Any]) -> set[type[Any]]:
     """Recursively get all the (reachable) subclasses of the given class."""
 
     return set(cls.__subclasses__()).union(

@@ -39,12 +39,6 @@ repos:
         minimum_pre_commit_version: 2.9.2
         require_serial: true
         types_or: [python, pyi]
-      - id: pycln
-        name: Pyclean - Find redundant imports
-        entry: pycln
-        language: system
-        pass_filenames: true
-        types_or: [python, pyi]
       - id: mypy
         name: Mypy check
         entry: mypy
@@ -77,6 +71,14 @@ repos:
         language: system
         pass_filenames: false
         files: pyproject.toml
+      - id: pyupgrade
+        name: Pyupgrade check
+        description: "Automatically upgrade python syntax to newer versions"
+        language: system
+        entry: pyupgrade --py310-plus
+        types: [python]
+        pass_filenames: true
+
   - repo: meta
     hooks:
       - id: check-hooks-apply

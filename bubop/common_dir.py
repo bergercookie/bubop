@@ -1,7 +1,6 @@
 """Home of the CommonDir class."""
 import sys
 from pathlib import Path
-from typing import Dict
 
 from bubop.exceptions import OperatingSystemNotSupportedError
 
@@ -40,17 +39,17 @@ class CommonDir:
         return _os_to_cache_dir[os_system.lower()]
 
 
-_os_to_config_dir: Dict[str, Path] = {
+_os_to_config_dir: dict[str, Path] = {
     "linux": Path("~/.config").expanduser(),
     "darwin": Path("~/Library/Preferences/").expanduser(),
 }
 
-_os_to_share_dir: Dict[str, Path] = {
+_os_to_share_dir: dict[str, Path] = {
     "linux": Path("~/.local/share").expanduser(),
     "darwin": Path("~/Library/").expanduser(),
 }
 
-_os_to_cache_dir: Dict[str, Path] = {
+_os_to_cache_dir: dict[str, Path] = {
     "linux": Path("~/.cache/").expanduser(),
     "darwin": Path("~/Library/Caches/").expanduser(),
 }

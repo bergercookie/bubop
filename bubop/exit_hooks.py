@@ -1,7 +1,8 @@
+"""Exit hooks class."""
 import sys
 import traceback
+from collections.abc import Callable
 from io import StringIO
-from typing import Optional
 
 
 class ExitHooks:
@@ -16,20 +17,24 @@ class ExitHooks:
 
     def __init__(self, print_fn=print):
         self.exit_code = None
-        self.exception: Optional[Exception] = None
+        self.exception: Exception | None = None
         self.exc_type = None
         self._print_fn = print_fn
+        self._orig_exit: Callable[[int], None]
 
     def register(self):
+        """Register the exit hook."""
         self._orig_exit = sys.exit
         sys.exit = self.exit
         sys.excepthook = self.exc_handler
 
     def exit(self, code=0):
+        """Exit function override."""
         self.exit_code = code
         self._orig_exit(code)
 
     def exc_handler(self, exc_type, exc_value, tb, *args):
+        """Exception handler override."""
         self.exception = exc_value
         self.exc_type = exc_type
 

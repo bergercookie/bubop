@@ -12,6 +12,7 @@ from bubop.exceptions import (
     NotEnoughArgumentsError,
     OperatingSystemNotSupportedError,
 )
+from bubop.exit_hooks import ExitHooks
 from bubop.fs import FileType, get_valid_filename, valid_dir, valid_file, valid_path
 from bubop.inspect import inspect_var_name
 from bubop.logging import (
@@ -38,8 +39,6 @@ from bubop.time import (
     is_same_datetime,
     parse_datetime,
 )
-
-from bubop.exit_hooks import ExitHooks
 
 __all__ = [
     "AuthenticationError",

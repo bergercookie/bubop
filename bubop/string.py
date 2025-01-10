@@ -2,7 +2,8 @@
 
 import random
 import string
-from typing import Any, List, Mapping, Sequence
+from collections.abc import Mapping, Sequence
+from typing import Any
 
 
 def camel_case_to_dashed(s: str) -> str:
@@ -16,7 +17,7 @@ def camel_case_to_dashed(s: str) -> str:
     >>> camel_case_to_dashed("SLAM")
     'slam'
     """
-    new_chars: List[str] = []
+    new_chars: list[str] = []
     last_char = ""
     for char in s:
         if char.isupper():
@@ -51,7 +52,7 @@ def non_empty(title: str, value: str, join_with: str = " -> ", newline=True) -> 
         return ""
 
 
-def format_list(  # pylint: disable=R0913
+def format_list(  # pylint: disable=R0913,R0917
     items: Sequence[str],
     header: str,
     indent=2,

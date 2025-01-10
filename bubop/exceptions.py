@@ -1,6 +1,6 @@
 """Custom Exceptions."""
 
-from typing import Any, Optional
+from typing import Any
 
 
 class NoSuchFileOrDirectoryError(BaseException):
@@ -36,7 +36,7 @@ class NOptionsRequired(BaseException):
     """
 
     def __init__(
-        self, prefix: str, num_required: int, *args, num_given: Optional[int] = None, **kargs
+        self, prefix: str, num_required: int, *args, num_given: int | None = None, **kargs
     ):
         args_str1 = " | ".join(kargs.values())
         args_str2 = " | ".join(args)

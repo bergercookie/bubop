@@ -2,7 +2,8 @@
 import logging
 import logging.handlers
 import sys
-from typing import Literal, Mapping
+from collections.abc import Mapping
+from typing import Literal
 
 import loguru
 import tqdm

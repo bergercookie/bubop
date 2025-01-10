@@ -1,11 +1,11 @@
 """Runtime-related utilities - making use of the inspect module."""
 import inspect
-from typing import Any, Optional
+from typing import Any
 
 from bubop.exceptions import TooShallowStackError
 
 
-def inspect_var_name(var: Any, level=2) -> Optional[str]:
+def inspect_var_name(var: Any, level=2) -> str | None:
     """Retrieve the name of the variable `var` passed from the caller to this function.
 
     Use the `level` argument to refer to the argument name of the caller's caller (level=2) or

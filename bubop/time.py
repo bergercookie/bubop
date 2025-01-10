@@ -2,7 +2,7 @@
 
 import datetime
 from enum import Enum
-from typing import List, cast
+from typing import cast
 
 import dateutil.parser
 import dateutil.tz
@@ -19,7 +19,7 @@ class TimePeriod(Enum):
     Month = 5
     Year = 6
 
-    def higher_to_this(self) -> List["TimePeriod"]:
+    def higher_to_this(self) -> list["TimePeriod"]:
         """
         Return all the periods that are bigger than the current one.
 
@@ -32,7 +32,7 @@ class TimePeriod(Enum):
         """
         return [p for p in all_periods if p.value > self.value]
 
-    def lower_to_this(self) -> List["TimePeriod"]:
+    def lower_to_this(self) -> list["TimePeriod"]:
         """
         Return all the periods that are smaller than the current one.
 
@@ -45,7 +45,7 @@ class TimePeriod(Enum):
         """
         return [p for p in all_periods if p.value < self.value]
 
-    def lower_or_equal_to_this(self) -> List["TimePeriod"]:
+    def lower_or_equal_to_this(self) -> list["TimePeriod"]:
         """
         Return all the periods that are smaller or equal than the current one.
 
@@ -57,7 +57,7 @@ class TimePeriod(Enum):
         out.append(self)
         return out
 
-    def higher_or_equal_to_this(self) -> List["TimePeriod"]:
+    def higher_or_equal_to_this(self) -> list["TimePeriod"]:
         """
         Return all the periods that are higher or equal than the current one.
 

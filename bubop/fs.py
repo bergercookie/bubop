@@ -1,8 +1,8 @@
 """Filesystem-related utilities."""
 import re
+from collections.abc import Callable
 from enum import Enum, auto
 from pathlib import Path
-from typing import Callable, Dict, Type
 
 from bubop.exceptions import NoSuchFileOrDirectoryError
 
@@ -35,13 +35,13 @@ class FileType(Enum):
         return _file_type_to_exists_fn[self](path)
 
 
-_file_type_to_exists_fn: Dict[FileType, Callable[[Path], bool]] = {
+_file_type_to_exists_fn: dict[FileType, Callable[[Path], bool]] = {
     FileType.FILE: lambda p: p.is_file(),
     FileType.DIR: lambda p: p.is_dir(),
     FileType.FILE_OR_DIR: lambda p: p.exists(),
 }
 
-_file_type_to_not_exists_exc: Dict[FileType, Type[BaseException]] = {
+_file_type_to_not_exists_exc: dict[FileType, type[BaseException]] = {
     FileType.FILE: FileNotFoundError,
     FileType.DIR: NotADirectoryError,
     FileType.FILE_OR_DIR: NoSuchFileOrDirectoryError,

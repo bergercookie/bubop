@@ -2,10 +2,10 @@
 
 import pickle
 from pathlib import Path
-from typing import Any, Union
+from typing import Any
 
 
-def pickle_dump(item: Any, path: Union[Path, str], *, protocol=0, **kargs):
+def pickle_dump(item: Any, path: Path | str, *, protocol=0, **kargs):
     """Helper method to serialize your dictionary to the given path.
 
     By default use protocol 0.
@@ -14,7 +14,7 @@ def pickle_dump(item: Any, path: Union[Path, str], *, protocol=0, **kargs):
         pickle.dump(item, f, **kargs, protocol=protocol)
 
 
-def pickle_load(path: Union[Path, str]) -> Any:
+def pickle_load(path: Path | str) -> Any:
     """Pickle-load using the given path."""
     with Path(path).open("rb") as f:
         return pickle.load(f)

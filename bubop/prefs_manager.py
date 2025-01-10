@@ -1,8 +1,9 @@
 """Home of the PrefsManager class."""
 import atexit
 import platform
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any, Optional, Sequence
+from typing import Any
 
 import yaml
 
@@ -66,7 +67,7 @@ class PrefsManager:
 
         # Indicates the latest fetched setting (key) of the PrefsManager instance
         # This is useful for updating that setting in a straightforward way
-        self._latest_accessed: Optional[Any] = None
+        self._latest_accessed: Any | None = None
 
         # Load the preferences file -----------------------------------------------------------
         # If _config_dir doesn't exist this along with all the files in it should be created

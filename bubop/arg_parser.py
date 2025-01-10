@@ -1,14 +1,13 @@
 """Argparse-related utilities."""
 
 from argparse import ArgumentParser
-from typing import Optional
 
 
 def add_bool_argument(
     parser: ArgumentParser,
     arg_name: str,
-    default: Optional[bool] = None,
-    true_help: Optional[str] = None,
+    default: bool | None = None,
+    true_help: str | None = None,
 ):
     """Add a boolean CLI argument to the given ArgumentParser object.
 
