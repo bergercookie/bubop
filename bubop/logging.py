@@ -31,15 +31,17 @@ def verbosity_int_to_str(verbosity: int) -> LoguruLogLevel:
                       = 1 -> DEBUG,
                       >=2 -> TRACE
 
-    >>> verbosity_int_to_str(1)
-    'DEBUG'
-    >>> verbosity_int_to_str(2)
-    'TRACE'
-    >>> verbosity_int_to_str(3)
-    'TRACE'
-    >>> verbosity_int_to_str(-1)
-    Traceback (most recent call last):
-    RuntimeError: ...
+    Usage::
+
+        >>> verbosity_int_to_str(1)
+        'DEBUG'
+        >>> verbosity_int_to_str(2)
+        'TRACE'
+        >>> verbosity_int_to_str(3)
+        'TRACE'
+        >>> verbosity_int_to_str(-1)
+        Traceback (most recent call last):
+        RuntimeError: ...
     """
     if verbosity < 0:
         raise RuntimeError("verbosity must be >= 0")
@@ -52,6 +54,7 @@ def verbosity_int_to_str(verbosity: int) -> LoguruLogLevel:
 def loguru_set_verbosity(verbosity: int):
     """
     Set the verbosity of the tqdm logger.
+
     :param verbosity: 0 for >= INFO,
                       1 for >= DEBUG,
                       2 for >= TRACE

@@ -15,17 +15,17 @@ def inspect_var_name(var: Any, level=2) -> str | None:
 
     Usage::
 
-    >>> var1 = "kalimera"
-    >>> inspect_var_name(var1, level=1)
-    'var1'
-    >>> fn = lambda x: (inspect_var_name(x, level=1), inspect_var_name(x))
-    >>> fn(var1)
-    ('x', 'var1')
-    >>> inspect_var_name(var1, level=1000) == None
-    Traceback (most recent call last):
-    bubop.exceptions.TooShallowStackError: Stack has less ...
-    >>> inspect_var_name(1, level=1) == None
-    True
+        >>> var1 = "kalimera"
+        >>> inspect_var_name(var1, level=1)
+        'var1'
+        >>> fn = lambda x: (inspect_var_name(x, level=1), inspect_var_name(x))
+        >>> fn(var1)
+        ('x', 'var1')
+        >>> inspect_var_name(var1, level=1000) == None
+        Traceback (most recent call last):
+        bubop.exceptions.TooShallowStackError: Stack has less ...
+        >>> inspect_var_name(1, level=1) == None
+        True
     """
     currframe = inspect.currentframe()
 

@@ -20,16 +20,16 @@
 
 ## Description
 
-This is a collection of python utils that I seem to be re-writing again and
+This is a collection of python utilities that I seem to be re-writing again and
 again in all new python projects of mine.
 
 ## Installation
 
-Just install them with pip:
+Just install this with pip:
 
 ```sh
-pip3 install --user bubop
+pip install --user bubop
 
-# Or via poetry:
+# Or via poetry as a dependency
 poetry add bubop
 ```

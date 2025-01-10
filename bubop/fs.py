@@ -122,7 +122,7 @@ def get_valid_filename(s: str) -> str:
 
     .. seealso::
 
-        `https://stackoverflow.com/questions/295135/turn-a-string-into-a-valid-filename`_
+        `Stack Overflow thread <https://stackoverflow.com/questions/295135/turn-a-string-into-a-valid-filename>`_
     """
     s = str(s).strip().replace(" ", "_")
     return re.sub(r"(?u)[^-\w.]", "_", s)

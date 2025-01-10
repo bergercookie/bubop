@@ -79,6 +79,14 @@ repos:
         types: [python]
         pass_filenames: true
 
+      - id: apidoc
+        name: Generate API documentation
+        description: "Generate API documentation using Sphinx"
+        entry: sphinx-apidoc -o rst/api/ bubop/ --remove-old
+        types_or: [python, rst]
+        language: system
+        pass_filenames: false
+
   - repo: meta
     hooks:
       - id: check-hooks-apply

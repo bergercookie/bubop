@@ -15,44 +15,43 @@ def add_bool_argument(
 
     Usage::
 
+        >>> import argparse
+        >>> parser = argparse.ArgumentParser(description="SomeArgumentParser")
+        >>> add_bool_argument(parser, "someflag")
+        >>> add_bool_argument(parser, "someflag2", default=True)
+        >>> add_bool_argument(parser, "someflag3", default=False)
+        >>> add_bool_argument(parser, "someflag4", true_help="somehelp4")
+        >>> add_bool_argument(parser, "a_flag")
+        >>> add_bool_argument(parser, "b-flag")
+        >>> config = parser.parse_args(["--someflag"]) # basic
+        >>> config.someflag
+        True
+        >>> config = parser.parse_args(["--no-someflag"])
+        >>> config.someflag
+        False
 
-    >>> import argparse
-    >>> parser = argparse.ArgumentParser(description="SomeArgumentParser")
-    >>> add_bool_argument(parser, "someflag")
-    >>> add_bool_argument(parser, "someflag2", default=True)
-    >>> add_bool_argument(parser, "someflag3", default=False)
-    >>> add_bool_argument(parser, "someflag4", true_help="somehelp4")
-    >>> add_bool_argument(parser, "a_flag")
-    >>> add_bool_argument(parser, "b-flag")
-    >>> config = parser.parse_args(["--someflag"]) # basic
-    >>> config.someflag
-    True
-    >>> config = parser.parse_args(["--no-someflag"])
-    >>> config.someflag
-    False
+        >>> config = vars(parser.parse_args([])) # defaults
+        >>> config["someflag"] == False
+        True
+        >>> config["someflag2"] == True
+        True
+        >>> config["someflag3"] == False
+        True
+        >>> config["someflag4"] == False
+        True
+        >>> "somehelp4" in parser.format_help()
+        True
+        >>> parser.parse_args(["--someflag", "--no-someflag"]) # exception
+        Traceback (most recent call last):
+        ...
+        SystemExit: 2
 
-    >>> config = vars(parser.parse_args([])) # defaults
-    >>> config["someflag"] == False
-    True
-    >>> config["someflag2"] == True
-    True
-    >>> config["someflag3"] == False
-    True
-    >>> config["someflag4"] == False
-    True
-    >>> "somehelp4" in parser.format_help()
-    True
-    >>> parser.parse_args(["--someflag", "--no-someflag"]) # exception
-    Traceback (most recent call last):
-    ...
-    SystemExit: 2
-
-    >>> config = vars(parser.parse_args(["--a_flag"]))
-    >>> config["a_flag"] == True
-    True
-    >>> config = vars(parser.parse_args(["--b-flag"]))
-    >>> config["b-flag"] == True
-    True
+        >>> config = vars(parser.parse_args(["--a_flag"]))
+        >>> config["a_flag"] == True
+        True
+        >>> config = vars(parser.parse_args(["--b-flag"]))
+        >>> config["b-flag"] == True
+        True
     """
 
     def _format(s: str):

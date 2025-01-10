@@ -105,3 +105,6 @@ ENV/
 Session.vim
 
 poetry.lock
+
+# sphinx
+rst/_build/
