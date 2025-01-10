@@ -6,11 +6,16 @@ from typing import Any
 class NoSuchFileOrDirectoryError(BaseException):
     """Exception raised when file/directory is not found.
 
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus
+
     Usage::
 
-        >>> raise NoSuchFileOrDirectoryError("foo")
+        >>> raise NoSuchFileOrDirectoryError("bar")
         Traceback (most recent call last):
-        bubop.exceptions.NoSuchFileOrDirectoryError: No such file or directory -> foo
+        bubop.exceptions.NoSuchFileOrDirectoryError: No such file or directory -> bar
+
+        >>> a = 1
+        >>> b = 2
 
     """
 
@@ -21,6 +26,8 @@ class NoSuchFileOrDirectoryError(BaseException):
 class OperatingSystemNotSupportedError(BaseException):
     """
     Exception raised when an operation is not supported for the OS at hand.
+
+    Some more text here ...
 
     Usage::
 
@@ -35,7 +42,7 @@ class OperatingSystemNotSupportedError(BaseException):
 
 class CliIncompatibleOptionsError(BaseException):
     """
-    Exception raised when incompatible options are given in the CLI of a program.
+    Nah, let's not raise any exceptions here.
 
     Usage::
 
@@ -150,6 +157,9 @@ class ApplicationNotInstalled(BaseException):
 class AuthenticationError(BaseException):
     """
     Exception raised when authentication with a certain application/service failed
+
+    Hello there
+
     """
 
     def __init__(self, appname: str):
