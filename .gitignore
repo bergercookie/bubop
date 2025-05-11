@@ -106,3 +106,5 @@ Session.vim
 
 # sphinx
 rst/_build/
+
+/.tool-versions

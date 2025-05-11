@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bubop"
-version = "0.2.2"
+version = "0.2.2.post2.dev0"
 description = "Bergercookie's Useful Bits Of Python"
 authors = ["Nikos Koukis <nickkouk@gmail.com>"]
 license = "MIT"
@@ -17,6 +17,7 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Programming Language :: Python",
   "Topic :: Utilities",
 ]
@@ -25,37 +26,40 @@ keywords = ["utilities", "utils"]
 
 # end-user dependencies --------------------------------------------------------
 [tool.poetry.dependencies]
-python = ">=3.10.0,<3.13"
+python = ">=3.10.0,<3.14"
 loguru = "^0.7.3"
 tqdm = "^4.67.1"
 python-dateutil = "^2.9.0.post0"
 PyYAML = "~6.0.2"
-click = { version = "^8.1.8", optional = true }
+click = { version = "^8.2.0", optional = true }
 
 # docs dependencies
-sphinx = { version = "^8.1.3", optional = true }
+sphinx = [
+  { version = "^8.1.3", optional = true },
+  { version = "^8.2", python = ">=3.11" },
+]
 sphinx-rtd-theme = { version = "^3.0.2", optional = true }
 sphinx-copybutton = { version = "^0.5.2", optional = true }
 sphinxcontrib-spelling = { version = "^8.0.1", optional = true }
 
 # dev dependencies
 black = { version = "^24.10.0", optional = true }
-identify = { version = "^2.6.5", optional = true }
+identify = { version = "^2.6.10", optional = true }
 isort = { version = "^5.13.2", optional = true }
-mock = { version = "^5.1.0", optional = true }
-mypy = { version = "^1.14.1", optional = true }
-pdbpp = { version = "^0.10.3", optional = true }
-pre-commit = { version = "^4.0.1", optional = true }
-pyfakefs = { version = "^5.7.3", optional = true }
-pylint = { version = "^3.3.3", optional = true }
-pyright = { version = "^1.1.391", optional = true }
-pytest = { version = "^8.3.4", optional = true }
-types-PyYAML = { version = "^6.0.12.20241230", optional = true }
+mock = { version = "^5.2.0", optional = true }
+mypy = { version = "^1.15.0", optional = true }
+pre-commit = { version = "^4.2.0", optional = true }
+pyfakefs = { version = "^5.8.0", optional = true }
+pylint = { version = "^3.3.7", optional = true }
+pyright = { version = "^1.1.400", optional = true }
+pytest = { version = "^8.3.5", optional = true }
+types-PyYAML = { version = "^6.0.12.20250402", optional = true }
 types-python-dateutil = { version = "^2.9.0.20241206", optional = true }
-coverage = { version = "^7.6.10", optional = true }
-coveralls = { version = "^4.0.1", optional = true }
-check-jsonschema = { version = "^0.31.0", optional = true }
+coverage = { version = "^7.8.0", optional = true }
+coveralls = { version = "^4.0.1", optional = true, python = "<3.13" }
+check-jsonschema = { version = "^0.31.3", optional = true }
 pyupgrade = { version = "^3.19.1", optional = true }
+pdbp = {version = "^1.7.0", optional = true}
 
 [tool.poetry.extras]
 docs = [
@@ -71,7 +75,7 @@ dev = [
   "isort",
   "mock",
   "mypy",
-  "pdbpp",
+  "pdbp",
   "pre-commit",
   "pyfakefs",
   "pylint",
@@ -150,6 +154,15 @@ pythonPlatform = "Linux"
 addopts = "--ignore=quickstart* --doctest-modules"
 
 # build-system -----------------------------------------------------------------
+[tool.poetry-dynamic-versioning]
+enable = false
+metadata = false
+dirty = false
+style = "pep440"
+
+[tool.poetry-dynamic-versioning.files."syncall/__version__.py"]
+persistent-substitution = false
+
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"
