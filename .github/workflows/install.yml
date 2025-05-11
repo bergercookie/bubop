@@ -1,0 +1,22 @@
+name: "Pip install"
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  install_with_pip3:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - name: Install with pip3
+        run: |
+          pip3 install .
+          pip3 show bubop

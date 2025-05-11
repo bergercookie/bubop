@@ -1,0 +1,31 @@
+name: "Lint & test"
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  lint_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      # python/poetry setup
+      - uses: actions/checkout@v2
+      - name: Setup poetry
+        uses: abatilo/actions-poetry@v3.0.2
+        with:
+          poetry-version: "2.1.3"
+          poetry-plugins: "poetry-dynamic-versioning[plugin]"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: poetry
+      - name: Install python dependencies
+        run: |
+          poetry install --all-extras
+
+      # run pre-commit
+      - run: poetry run pre-commit run --all-files

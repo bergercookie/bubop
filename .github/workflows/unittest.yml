@@ -1,0 +1,38 @@
+name: "Unittest"
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  unittest:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      # python/poetry setup
+      - uses: actions/checkout@v2
+      - name: Setup poetry
+        uses: abatilo/actions-poetry@v3.0.2
+        with:
+          poetry-version: "2.1.3"
+          poetry-plugins: "poetry-dynamic-versioning[plugin]"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: poetry
+      - name: Install python dependencies
+        run: |
+          poetry install --all-extras
+
+      # run tests
+      - name: Run tests
+        run: poetry run pytest
