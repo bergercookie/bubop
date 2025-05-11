@@ -11,6 +11,9 @@ from pathlib import Path
 
 import sphinx.application
 
+from bubop.logging import logger
+from bubop.version import get_version_from_git
+
 # document the source code with autodoc
 # https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
 source_code = Path(__file__).resolve().parent.parent
@@ -25,7 +28,11 @@ sys.path.insert(0, str(source_code))
 project = "bubop"
 copyright = "2025, Nikos Koukis"
 author = "Nikos Koukis"
-release = "0.2.0"
+
+version = str(get_version_from_git())
+release = version
+
+logger.info(f"Determined version from git: {version!r}")
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
